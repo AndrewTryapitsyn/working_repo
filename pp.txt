@@ -1,0 +1,111 @@
+----------git--------------
+--version control--
+
+git config --list
+git status
+
+.gitignore 		- file what will be igrore for watching
+git add 		what will be commited
+git add . 		- add files in llocal directory(/dir1/) what will be commited
+(it is good to separate filees to be commited for easy rollback)
+git reset HEAD  	to remove files from stage status
+git commit -m "message about update" 	without -m you have to edit file
+git checkout --<file|. for all files> - to rollback to previous state
+git diff 		- show changes from previous stage
+git log		
+
+
+---github---
+--storage for git--
+ssh-keygen -t rsa -b 4096 -C "pyneng.course@gmail.com"
+eval  "$(ssh-agent -s)" chech if it is working
+ssh-add  ~/.ssh/id_rsa  	-add key to dir
+add key to github throught web
+settings->ssh and GPG keys-> add new and copypast from file  ~/.ssh/id_rsa.pub
+ssh -T git@github.com
+
+cd
+git clone git@github.com:.....git
+
+git push origin master 	origin server's name master -branch
+git pull			download changes from github
+git diff HEAD..origin		to see changes befor pull
+
+
+----------------------------------------------------------------
+pip 
+pip3
+
+pip --version
+python3 -m pip install	to be sure about version of pip and python
+
+
+----------virtual environment-------
+isolate projects, with different versions of packets, python versions
+
+virtualenvwrapper  help to work with virtual environments
+sudo pip install virtualenvwrapper
+.bashrc
+export WORKON_HOME-~/venv
+. /usr/local/bin/virtualenvwrapper.sh
+
+create a new virtual env with by default Python3.6
+mkvirtualenv --python=/usr/loacl/bin/python3.6 pyneng
+
+workon pyneng 	swithc to virtual environment
+deactivate		logoff from virt env
+rmvirtualenv Test
+
+
+-----------------------
+round(10/3, 3)  = 3.333 up to 3
+round(10/3)       =3
+3**4   =81
+10%3 = 1  остаток
+a = '11'
+int(a) = 11
+bin_a = '101010100'
+int(bin_a, 2) = 340
+bin(255) = 0b1111111
+hex(255) = 0xff
+
+неизменямый тип
+
+str(5) = '5'
+line = 'don\'t'    \' 
+line = "don't"
+line ='''testtesttest
+	stilltest'''
+str1 = 'line1'
+str2 = 'line2'
+str1 + str2   == 'line1line2'
+str1*2 = 'lin1line1
+'#'*50  == '##############################'
+
+str1[0] = 'l'
+str[-1] = '1'
+str[0:2] = 'li'
+str[2:] = ne1
+str[-3:0]
+str[0:-1]
+str3= '123456789'
+str3[::2] = '13579'
+str2[::-1] = '987654321'
+line  = 'FastEthernet0/1FastEthernet0/1'
+line.count('Fast') == 2
+len(line) == 20
+line.find('Ether') = 4
+line.startswith('Fast') == True | endswith()
+line.replase('0/1', '0/3')  == 'FastEthernet0/3FastEthernet0/3'
+line.replase('0/1', '0/3',1)  == 'FastEthernet0/3FastEthernet0/1'
+line.strip()|lstrip()|rstrip()
+line.strip()
+line = [80/110]
+line.strip('[]') = 80/110
+ 
+
+
+
+type('qwe')  == str
+
+
