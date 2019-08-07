@@ -31,6 +31,21 @@ git push origin master 	origin server's name master -branch
 git pull			download changes from github
 git diff HEAD..origin		to see changes befor pull
 
+or create a new repository on the command line
+echo "# test" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:AndrewTryapitsyn/test.git
+git push -u origin master
+
+
+…or push an existing repository from the command line
+git remote add origin git@github.com:AndrewTryapitsyn/test.git
+git push -u origin master
+
+
+git pull  git@github.com:AndrewTryapitsyn/working_repo.git master
 
 ----------------------------------------------------------------
 pip 
@@ -70,7 +85,7 @@ bin(255) = 0b1111111
 hex(255) = 0xff
 
 неизменямый тип
-
+type('qwe')  == str
 str(5) = '5'
 line = 'don\'t'    \' 
 line = "don't"
@@ -102,10 +117,61 @@ line.strip()|lstrip()|rstrip()
 line.strip()
 line = [80/110]
 line.strip('[]') = 80/110
- 
+line = '1,3,4,5'
+line.splite() = ['1','3','4','5']
+
+tempate = '''
+		IP address: {}
+		Mask:		{}
+		Interface	{}
+		'''
+template.format('10.1.1.1', 24, 'Gi0/0')
+
+{:7} ширина 7 символов
+{:b} преобразовать Int в двоичную
+{:08b} добавить 0 до 8 символлов
+{:<}
+{:>}	выравнивание
+temp2 = '''IP: {0}/{1}
+		IP:		{0}
+		Mask:	{1}
+		'''
+temp2.format(10.1.1.1', 24)	
+temp2 = '''IP: {ip}/{mask}
+		IP:		{ip}
+		Mask:	{mask}
+		'''	
+temp2.format(ip = '10.1.1.1', mask = 24)
 
 
+list
+list1 = list('router')
+list1 = [1,2,3]
+генератор списка
+list1 = ['FastEthernet0/' + str(i) for i in range(10)]
+list1 = 'FastEthernet0/1'
+		'FastEthernet0/2'
+		'FastEthernet0/3'
+		...
+		'FastEthernet0/8'		
+		'FastEthernet0/9'
 
-type('qwe')  == str
-
+list1 = [10,20,30]
+list1[::-1] == 30,20,10 same rules as str
+--------
+list2=list1  link to the same object
+list2[0] = 100
+list1 == list2 ==100,20,30
+--
+list3 = list1.copy() create a copy
+-------------
+list1.append(40)
+list1.extend([40,50])  
+list1.insert(2,25)
+list1.pop()		remove by default last index| or specifix index
+list1.remove(20) remove by value
+list1 = [5,2,1,4,3]
+list1.sort()!! list1 == 1,2,3,4,5 !!!will sort list1 do not return result so if res = list1.sort(); res == null
+sorted()      !!!use sorted instead
+','.join(vlans)
 
