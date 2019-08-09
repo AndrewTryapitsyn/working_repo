@@ -1,3 +1,4 @@
+
 ----------git--------------
 --version control--
 
@@ -77,6 +78,8 @@ round(10/3, 3)  = 3.333 up to 3
 round(10/3)       =3
 3**4   =81
 10%3 = 1  остаток
+
+a+=5
 a = '11'
 int(a) = 11
 bin_a = '101010100'
@@ -174,4 +177,42 @@ list1 = [5,2,1,4,3]
 list1.sort()!! list1 == 1,2,3,4,5 !!!will sort list1 do not return result so if res = list1.sort(); res == null
 sorted()      !!!use sorted instead
 ','.join(vlans)
+
+---------------dict--------------
+r1 = {'location':'IT'}
+r1 = dict(location='IT', serial='aaaaa')
+d_keys = ['hostname','location','vendor','model']
+dict.fromkeys(d_keys) 			with None by default
+dict.fromkeys(d_keys, False)	or with values, but do not create different values, rather link to the same value, for example link to the same list
+d = {key:[] for key in d_keys}	same but create a separate object for each value
+
+
+del r1['location']  delete key
+r1.get('loac',10) return 10 if don't have key
+r1.setdefault('location') return value if we have this key, if we don't have create new key and set value to None
+r1.keys(),values().items() - special object , not regular list
+l1 = r1.keys()			- link to r1.keys() and not a separate object
+l2 = list(r1.keys())	- copy of keys
+
+r.update(new_data)		- update old keys with new data, if key is not exist create a new
+
+
+
+-------------tuple------
+t = (1,)
+-------set--------
+set1 = set()
+set1 = {1,2,3,4,5,6}
+{item  ** 2 for item in [1,2,3,4]}
+
+
+set1.add(2)
+set1.discard(2)
+vlans1&vlans2  == intersection
+vlan1|vlans2   union
+vlan1 - vlans2 difference
+
+
+
+
 
