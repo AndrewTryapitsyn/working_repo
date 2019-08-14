@@ -214,5 +214,21 @@ vlan1 - vlans2 difference
 
 
 
+d = {1:10,2:20,3:30}
+for key,value in d.items:
+	print(key,value)
+
+--------
+while true:
+
+	if k == 1:
+		contunue	jump to start while
+	if k==2:
+		break		end of while
+	if k==4:
+		pass		don't do nothing, just like temp if you don't know yet- vlans2 difference
+
+-----------
+
 
 
