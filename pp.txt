@@ -266,7 +266,54 @@ while true:
 
 
 
+-----------
 
+try:
+	result = a / b
+except ZeroDivisionErroe:
+	print('error')
+else:					# if there wasnt any execepts
+	print(result)
+finaly:
+	print('always executed')
+
+-------
+
+
+with  open('r1.txt') as f:		context manager
+	print(f.read()) 	read all file in one string
+	
+f = open('r1.txt','r')		r,r+(read + write),w(clear file write to it),a(append)
+f.read()		read all file in one line
+f.readline()	read only one string from file
+while True:
+	line = f.readline()		when we don't have string, it is returning ''
+	print(line)
+	if not line:
+		break
+with open('r1.txt') as f:	read only one line from file(if large file it is better)
+	for line in f:
+		print(line)
+		
+f.readlines()	read file in list
+	
+f = open('new_file.txt','w')	
+f.write('line')			write in one line
+f.write('line1')		== lineline1
+
+f.writelines(list1) 	write list into file, do not add any '\n'
+f.close()
+f.closed()				return True if it is closed
+
+with open('r1.txt') as src, open('result.txt','w') as dest:
+	for line in src:
+		if line.startwith('service'):
+			print(line)
+			dest.write(line)	
+
+	
+	
+	
 %history   in ipython
 pythontutol
 pdb   - debuger
