@@ -311,6 +311,23 @@ with open('r1.txt') as src, open('result.txt','w') as dest:
 			print(line)
 			dest.write(line)	
 
+
+---------------------------
+print(*items, sep=' ',end='\n', file=sys.stdout,flush=False)   -flush do not wait for \n to bufferize, immediate print
+
+randge(start,stop,step )
+randge(0,10,-1)
+5 in range(0,10)
+sorted((1,2,3,4,5)) always return list
+sorte even subobjects, firstly for 1 key, second,...
+from operator import itemgetter
+sorted(data,key = itemgetter(1)) can sort not only by first value
+
+import time
+time.sleep(1)
+
+
+---------------------------
 	
 	
 	
