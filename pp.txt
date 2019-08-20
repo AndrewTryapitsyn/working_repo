@@ -311,6 +311,95 @@ with open('r1.txt') as src, open('result.txt','w') as dest:
 			print(line)
 			dest.write(line)	
 
+----------------------------
+--------------
+unpacking variables 
+a,b = 3,50
+ip,mask,mac = ['10.1.1.1','24','aaaa.bbbb.cccc']
+vlan,mac,_,intf = '100	01bb.c555.7000 DYNAMIC	Gi0/0'.split()	_ is using if you don't need this value
+vlan,mac,*rest,intf = '100	01bb.c555.7000 DYNAMIC	Gi0/0'.split()
+
+num = [1,2,3,4,5]
+first,second,*rest = num
+firs = 2 ; second = 2 ,rest = [3,4,5]
+*rest, first,second  = num
+firs = 4 ; second = 5 ,rest = [1,2,3]
+
+r1= {
+    'location': '21 New Globe Walk',
+    'vendor': 'Cisco',
+    'model': '4451',
+    'ios': '15.4',
+    'ip': '10.255.0.1'	
+for key,value in r1.items():
+	print(key,value)
+	
+	
+------------list comprehensions---------(list generator)
+ip = '10.1.1.1'
+result = [int(octet) for octet in ip.split('.')]  # firs go value for list , second from there
+==
+for octet in ip.split('.'):
+	result.append(int(octed))
+	
+['vlan {}'.format(num) for num in [1,14,50,100]]
+
+items = [10,'a',40,'s',100]
+for item in items:
+	if type(item) == int:
+		result.append(item)
+		
+result = [ item for item in items if type(item) == int]  == [10,40,100]
+result = { item for item in items if type(item) == int}
+
+k = ', '.join(item for item in items if item.isalpha())  --generator expresion
+
+
+--------------
+def sum(a,b,verbose=True)		c - unnecessary argument, with default value| do not use [],{} better None
+'''Docstring - describe information about the function'''
+	if verbose: print(a,b)
+	return a+b	
+# if return several values it will return tuple = (a,b)
+	return a,b 
+
+import ipaddress
+def check_ip(ip_address):
+	try:
+		ipaddress.ip_interface(ip_address)
+		return True
+	except ValueError as err:
+		return False
+-----------------
+
+def f(*vargs)
+	print(vargs)
+f(1,2,3,4)  == (1,2,3,4)
+
+def f(**kwargs)
+	print(kwargs)
+print(a=1,b=2)  == {'a':1,'b':2}
+
+unpacking arguments
+template = '{}{}{}{}'
+ip = '10.1.1.1'
+ipl = ip.split('.')
+template.format(*ipl)
+
+def f(a,b,c)
+	return a+b+c
+d = {'a':1,'b':10,'c':44}
+f(**d) == 55
+
+def donncet_ssh(ip,user,password,timout = 10, strip_prompt=True)
+		print(ip,user,password,timeout,strip_prompt)
+def conncetc_to_ip_list(ip_list,user,password,**kwargs):
+	print(kwargs)						== {'timeout':10,'strip_prompt':False}
+	for ip in ip_list:
+		connect(ip,user,password,**kwargs)
+
+conncetc_to_ip_list('10.1.1.1','cisco','cisci',timeout = 10,strip_prompt=False)
+
 
 ---------------------------
 print(*items, sep=' ',end='\n', file=sys.stdout,flush=False)   -flush do not wait for \n to bufferize, immediate print
