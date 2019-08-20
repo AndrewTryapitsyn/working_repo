@@ -414,7 +414,15 @@ sorted(data,key = itemgetter(1)) can sort not only by first value
 
 import time
 time.sleep(1)
+----------------
+from sys import *     never use , because  could not recognizr from where
 
+# do not start with import
+if __name__ == '__main__':
+	your code
+
+sys.path show all directories to check for modules
+sys.path.append('../09_fuctions/')  temporary add path
 
 ---------------------------
 	
