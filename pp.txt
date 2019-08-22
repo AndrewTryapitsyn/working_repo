@@ -425,8 +425,177 @@ sys.path show all directories to check for modules
 sys.path.append('../09_fuctions/')  temporary add path
 
 ---------------------------
-	
-	
+	vlan =['2','100','1000','200']
+sorted(vlan,key = int) sort by value og numbers
+sorted(vlan, key =len, reverse = True) sort by lendgth in opposite direction
+key = str.lower,
+
+enumerate(data, startfrom)  asign  numbers for data
+list(enumerate([10,20,30,40,50]))   == [(1,10),(2,20),(3,30),(4,40),(5,50)]
+for idx,item in enumerate(data,1):
+	print(idx,item)					== 1 date1
+										2 data2
+key = ['protocol','prefix','interface']
+value = ['ospf','10.1.1.1','fa0/1']										
+dict(zip(key,value))			-- cut to the lower number of elements							
+
+all()		return True if all elements is True or []
+ip = '10.1.1.1'
+all([octet.isdigit() for octet in ip.split('.')])  return True if all digits
+
+any()		if any element True, return True
+
+ignor = ['alias','config','!']
+any([word in line for word in ignor]) return True if we have a ignore word in line
+-------------
+
+import time
+time.sleep(1)
+-------------------
+import sys				in both cases execute all module sys, here sys.argv
+from sys import argv	but here argv is accesible as variables not sys.argv but argv 
+
+
+sorted(data, key = lambda x: x[1]) sort by [1] column
+
+lambda   function without a name:
+def dum(a,b): return a+b
+sum_arg = lambda a,b: a+b
+
+
+
+vlans = ['1','10','100','200']
+[int(item) for item in vlans]
+list(map(int,vlans))   == [1,10,100,200]
+
+map(first,second)   first - transformation function, second - elements
+map apply 'first' function to each element 
+ 
+['vlan {}'.format(vl) for vl in vlans]
+list(map(lambda vl:'vlan {}'.format(vl), vlans))
+
+vlans = ['1','10','100','200','a']
+filter(first, second)   the same apply function 'first' to each element and return only elements with True value 
+list(filter(str.isdigit,vlans))
+--------------------
+
+subprocess  create a new proccess, cound run any Linux commands(ping...)
+import subprocess
+return = subprocess.run('ls') or run('ls', shell = True)
+return.returncode , stdout
+
+result = subprocess.run('ping 8.8.8.8 -c 5 -n',shell = True, stdout = subprocess.PIPE)
+result.stdout will return output but return in bytes b'strstr'
+resut.stdout.decode('utf-8') will return normal string or:
+result = subprocess.run('ping 8.8.8.8 -c 5 -n',shell = True, stdout = subprocess.PIPE, encoding='utf-8')
+
+result = subprocess.run('ping 8.8.8.8 -c 5 -n',shell = True, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
+in case of failure we can get result.stderr
+
+
+os
+working with filesystem
+import os
+os.mkdir('test')
+if not os.path.exists('test')
+	os.mkdir('test')
+os.listdir('.')
+os.path.isdir('test')
+
+import ipaddress
+ip1 = ipaddress.ip_address('8.8.8.8')
+
+net1 = ipaddress.ip_network('10.1.1.1/24')
+net1.with_hostmask == wildmask
+net1.with_netmask,prefixlist
+for ip in net1:
+	print(ip) all ip in network
+net1[4] == '10.1.1.4'
+
+net1.subnets(new_prefix=30)
+
+intf1 = ipaddress.ip_interface('10.1.1.195/28')
+intf1.netmask,network,withprefixlen
+
+
+
+tabulate
+pip install tabulate
+
+import tabulate
+from tabulate import tabulate
+print()
+
+sh_ip_int_br = [('FastEthernet0/0', '15.0.15.1', 'up', 'up'),
+...: ('FastEthernet0/1', '10.0.12.1', 'up', 'up'),
+...: ('FastEthernet0/2', '10.0.13.1', 'up', 'up'),
+...: ('Loopback0', '10.1.1.1', 'up', 'up'),
+...: ('Loopback100', '100.0.0.1', 'up', 'up')]
+
+print(tabulate(sh_ip_int_br))
+--------------- --------- -- --
+FastEthernet0/0 15.0.15.1 	up up
+FastEthernet0/1 10.0.12.1 	up up
+FastEthernet0/2 10.0.13.1 	up up
+Loopback0 		10.1.1.1 	up up
+Loopback100 	100.0.0.1 	up up
+
+columns=['Interface', 'IP', 'Status', 'Protocol']
+print(tabulate(sh_ip_int_br, headers=columns))
+Interface 			IP 		Status 	Protocol
+--------------- --------- -------- ----------
+FastEthernet0/0 15.0.15.1 		up 		up
+FastEthernet0/1 10.0.12.1 		up 		up
+FastEthernet0/2 10.0.13.1 		up 		up
+Loopback0 		10.1.1.1 		up 		up
+Loopback100 	100.0.0.1 		up 		up
+
+headers=«firstrow»
+headers='keys' to take header from dictionary keys
+tablefmt="grid"
+tablefmt='pipe'
+tablefmt='html'
+stralign='center'
+
+pprint
+from pprint import pprint
+pprint(somedict)
+pprint(somedict,dept=1)  depth of the dictionary (1 only keys, 2 - keys +values, etc)
+
+argparse
+---------------------------
+reg
+match = re.search('(\S+) +(\d+\.\d+\.\d+\.\d+\)',line)
+if did't find anithing return None,  or return FIRST match
+match.group() - full export
+match.groups() - list of elements with ()
+
+\d any digits
+\D except digits
+\s any whitspace(\t\n\r\f\v)
+\S except whitespace
+\w	any char or digit
+\W	except char or digit
+
++
+*
+? one or zero match
+{n} n matchs
+{n,m} from n to m matchs
+{n, } n or more match
+
+^ start
+$ end
+[abc] any symbol in brackets
+[^abc] except symbols
+[a-z]
+a|b a or b
+
+by default жадность
+disabe +? or *?
+---------------------------
+		
+
 	
 %history   in ipython
 pythontutol
