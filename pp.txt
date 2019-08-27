@@ -595,7 +595,68 @@ by default жадность
 disabe +? or *?
 ---------------------------
 		
+print(*items, sep=' ',end='\n', file=sys.stdout,flush=False)   -flush do not wait for \n to bufferize, immediate print
 
+randge(start,stop,step )
+randge(0,10,-1)
+5 in range(0,10)
+sorted((1,2,3,4,5)) always return list
+sorte even subobjects, firstly for 1 key, second,...
+from operator import itemgetter
+sorted(data,key = itemgetter(1)) can sort not only by first value
+
+import time
+time.sleep(1)
+
+
+
+from sys import *     never use , because  could not recognizr from where
+
+# do not start with import
+if __name__ == '__main__':
+	your code
+
+sys.path show all directories to check for modules
+sys.path.append('../09_fuctions/')  temporary add path
+
+re
+match 
+raw strings  r'\S+\1' == '\\S+\\1'
+matchh =re.search(r'Host (\S+) in vlan (\d+) is flapping between port (\S+) and port (\S+)',log2)
+group() or group(0) all expresion
+group(1) == host MAC
+group(2) == vlan   
+...
+ string - original string
+ re  - regular existing
+ start() - first symbol number
+ end()   last symbol number
+ span() - return start and end in tuple
+ lastgroup - return last group in ()
+ lastindex - return last indx of groups ()
+
+def func():
+	result = {}
+	regex = ('Device ID: (?P<device>\S+)|'
+			'Platform: (?P<plaatform>\S+ \S+),|'
+			', Version (?P<ios>\S+),|'
+			' IP address: (?P<ip>\S+)')
+	with open(filename) as f:
+		for line in f:
+			match = re.search(regex,line)
+			if match:
+				if match.last == 'device':
+					device = match.group('device')
+					result[device] = {}
+				else:
+					group = match.lastgroup
+					result[device][group] = match.group(group)
+	return result
+ 
+ 
+ match similar to search but look only starting from the beggining of string
+ 
+ 00:17
 	
 %history   in ipython
 pythontutol
