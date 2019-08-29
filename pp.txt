@@ -656,7 +656,24 @@ def func():
  
  match similar to search but look only starting from the beggining of string
  
- 00:17
+ finditer   used with full file return iterator, can be used only once
+result = re.finditer(r'(\S+) +(\S+).+',f.read())
+for match in result:
+	print(match.groups())
+	
+re.(regex,line,re.DOTALL()) - .+ will include \n
+
+
+re.findall()  to full file 
+if 1 group () list of this group
+if several groups () list of touple
+if no groups ()  list of strings full match
+
+
+re.split(r'[ ,.\[\]]+', ospf_route)
+re.sub() 
+
+26:15
 	
 %history   in ipython
 pythontutol
