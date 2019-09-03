@@ -705,6 +705,27 @@ with open('sw.csv','w') as f:
 		writer.writeheader() - by default dont write headers
 		
 		
+JSON
+Python		JSON
+True		true
+False		false
+dict		obj
+list,tuple	array
+None		null
+
+import json
+string1 = """s:['a','b']"""
+data=json.loads(string1)	loads working with strings
+with open(fname) as f:
+	data = json.load(f)		load working only with files
+		
+		
+with open(fname,'w') as f:
+	json.dump(data,f)			compact type
+	json.dump(data,f,indent=2)	human like format 
+	json.dump(data,f,indent=2,sort_keys=True)	human like format 	
+21:30
+
 %history   in ipython
 pythontutol
 pdb   - debuger
