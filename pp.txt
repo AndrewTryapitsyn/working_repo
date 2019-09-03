@@ -672,9 +672,39 @@ if no groups ()  list of strings full match
 
 re.split(r'[ ,.\[\]]+', ospf_route)
 re.sub() 
+re.sub()  same as replace only with regexp
+re.sub( )
 
-26:15
-	
+
+
+hi = 'hello, наташа'
+hi.encode('ascii', 'replace') == b'hello, ?????'
+hi.encode('ascii', 'namereplace') == will insert name CYRILIC SMALL LETTER A ,...
+hi.encode('ascii', 'ignore') == b'hello, '
+
+
+
+csv
+import csv
+with open('sw.csv') as f:
+	reader = csv.reader(f,delimiter=';') by defaulr delimier = ','
+	headers = next(reader) # will read header first
+	for line in reader:
+		print(line)
+		
+with open('sw.csv') as f:
+	reader = csv.DictReader(f) - will read Dictionary with keys from header
+	for line in reader:
+		print(line)		
+
+with open('sw.csv','w') as f:
+	writer = csv.writer(f)  | writer = csv.writer(f,quoting = csv.QUOTE_ALL)
+	for line in data:
+		writer.writerow(line)	 will write lines without ''
+		writer.DictWriter(f,fieldnames=list(data[0].keys()))
+		writer.writeheader() - by default dont write headers
+		
+		
 %history   in ipython
 pythontutol
 pdb   - debuger
