@@ -729,3 +729,22 @@ with open(fname,'w') as f:
 %history   in ipython
 pythontutol
 pdb   - debuger
+
+
+
+sqlite
+.help
+.exit , .quit
+.databases
+.tables
+sqlite don't care about data type, could be safe anythng
+CREATE table switch (
+	mac text not NULL primary key,
+	hostname	text,
+	model	text,
+	location	text
+);
+
+.schema     print table structure
+ 
+ 
