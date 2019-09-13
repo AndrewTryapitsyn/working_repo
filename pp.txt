@@ -745,6 +745,29 @@ CREATE table switch (
 	location	text
 );
 
-.schema     print table structure
- 
- 
+.schema print table structure
+
+INSERT into switch values ('aaaa.aaaa.aaaa','sw1','Cisco 3750','London,Green str');
+INSERT into switch (mac,model,location,hostname)
+values ('aaaa.aaaa.aaaa','sw1','Cisco 3750','London,Green str');
+
+SELECT * from switch;
+.headers ON			- enable headers
+.mode column		- more attractive view(separate by tab enstead of |)
+
+.read finename - read from file
+
+SELECT * from switch WHERE model = 'Cisco 3850';    should be exact match
+SELECT * from switch WHERE model like '%3750' and hostname like 'sw%';
+
+like:
+_ - one symbol or number
+% - zero or more 
+
+glob:
+* - zero or more symbols
+? - any single character
+[78]
+[a-z]
+
+SELECT * from switch WHERE model glob '*3[78]50*';
