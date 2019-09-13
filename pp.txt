@@ -726,6 +726,62 @@ with open(fname,'w') as f:
 	json.dump(data,f,indent=2,sort_keys=True)	human like format 	
 21:30
 
+
+json 
+
+keys could be only string not numbers
+
+
+yaml
+
+pip install pyyaml
+
+import yaml
+# comment
+uses spaces to indicate structure like in python
+list-
+[1,2,3,4,5]
+or (- space on each line)
+- 1
+- 2
+- 3
+- 4
+
+dict:
+
+[1:2,2:3]
+or :
+1:2
+2:3
+
+string: "" not necessary but if you have special symbols you need to use it
+
+dict with lists as values:
+
+access:
+- switchport
+- vlan
+trunk:
+- mode trunk
+- allowed vlans 4
+
+list of dicts
+- BS: 1550
+  TT:791
+  id:11
+- BS : 1510
+  TT: 792
+  id: 10
+  
+ import yaml
+ with open('test.txt') as f:
+	data = yaml.load(f)
+	
+with open('test.txt','w')as f:
+	yanl.dump(data,f)  , default_flow_style = False
+
+
+
 %history   in ipython
 pythontutol
 pdb   - debuger
