@@ -827,3 +827,33 @@ glob:
 [a-z]
 
 SELECT * from switch WHERE model glob '*3[78]50*';
+
+
+.dump   show alll commands to recreate your database
+
+if UNIQUE exception 
+insert or replace into switch (.....)
+or just:
+replace
+
+
+DELETE from switch where model is NULL;
+
+
+#import data from csv
+.mode csv 				
+.import table.csv rib
+
+
+select count(*) from rib;  show line number 
+
+select network,netmask,nexthop from rib LIMIT 10;   show only 10 lines
+select network,netmask,nexthop from rib order by nexthop LIMIT 10; 
+select network,netmask,nexthop from rib order by nexthop desc LIMIT 10;  order my increasing or decr
+
+
+select distinct nexthop from rib rib order by nexthop;
+
+select * from rib where netmask between 16 and 17 limit 20;
+select * from rib where netmask between 16 and 17 limit 20 offset 10; start from 10
+
