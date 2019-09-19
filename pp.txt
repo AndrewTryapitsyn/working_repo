@@ -857,3 +857,32 @@ select distinct nexthop from rib rib order by nexthop;
 select * from rib where netmask between 16 and 17 limit 20;
 select * from rib where netmask between 16 and 17 limit 20 offset 10; start from 10
 
+ import sqlite3
+ conn = sqlite3.connect('dhcp.db')
+ cursor = conn.cursor()
+ 
+ cursr.execute()
+  cursr.executemany()
+  cursr.executescript()
+
+query = "insert into switch values (?, ?, ?, ?)"
+for row in data:
+	cursor.execute(query, row)
+conn.commit()
+==
+cursor.executemany(query,data)
+		
+		
+cursor.execute('select * from switch')
+cursor.fetchall()
+
+cursor.fetchmany(2)
+cursor.fetchmany(2)
+cursor.fetchmany(2)
+cursor.fetchmany(2)
+
+cursor.fetchone()
+
+result = cursor.execute('select * from switch')
+for row in result:
+	print(line)
