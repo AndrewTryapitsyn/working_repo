@@ -886,3 +886,20 @@ cursor.fetchone()
 result = cursor.execute('select * from switch')
 for row in result:
 	print(line)
+	
+conn = sqlite3.connect('dhcp.db')
+witopen('dhcp.sql') as f:
+		conn.execute(f.read)
+
+query = 'insert into switch value (?, ?, ?, ?)'
+conn.executemany(query,data)
+conn.commit()
+
+for row in conn,execute('select * from switch')
+	print(row)
+conn.close()
+
+try:
+	conn.execute(q)
+except sqlite3.IntegrityError as err:
+	print(err)	
