@@ -903,3 +903,18 @@ try:
 	conn.execute(q)
 except sqlite3.IntegrityError as err:
 	print(err)	
+
+
+
+pexpect
+
+import pexpect
+output = pexpect.run('ls -ls')
+
+ssh = pexpect.spawn('ssh cisco@192.168.100.1')
+ssh.expect('[Pp]assword')		if return something, we've got this regexp
+ssh.sendline('cisco')
+ssh.expect('[>#]')
+ssh.before			here we can see output up to previous expect
+ssh.expect('[>#]',timeout = 50)
+48:00
