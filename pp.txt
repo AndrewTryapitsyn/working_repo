@@ -917,4 +917,7 @@ ssh.sendline('cisco')
 ssh.expect('[>#]')
 ssh.before			here we can see output up to previous expect
 ssh.expect('[>#]',timeout = 50)
-48:00
+ssh.close()
+ssh.isalive()
+
+ssh.expect('[>#]',pexpect.TIMEOUT)
