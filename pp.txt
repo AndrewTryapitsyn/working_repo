@@ -921,3 +921,22 @@ ssh.close()
 ssh.isalive()
 
 ssh.expect('[>#]',pexpect.TIMEOUT)
+
+
+Paramiko
+
+import paramiko
+client = paramiko.SSHClient()
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+client.connect(
+	hostname = '192.168.100.1',
+	username = 'cisco',
+	password = 'cisco',
+	look_for_keys = False,     firstly it checks for cert, so disable it
+	allow_agent = False			do not use ssh agent
+	)
+ssh = client.invoke_shell()
+ssh.send('enable\n')
+ssh.password('password\n')
+ssh.send('terminal length 0\n')
+ssh.recv()    shoud set bytes to receive
