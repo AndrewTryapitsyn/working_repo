@@ -940,3 +940,106 @@ ssh.send('enable\n')
 ssh.password('password\n')
 ssh.send('terminal length 0\n')
 ssh.recv()    shoud set bytes to receive
+
+
+netmiko
+DEVICE_PARAM = {'device_type':'cisco_ios',
+				'ip':IP,
+				'username':username,
+				'password':password,
+				'secret':enable}
+ssh = ConnectHandler(**DEVICE_PARAM)
+aah.enable()
+
+result = ssh.send_command(command)
+result = ssh.send_config_set(command)
+
+
+textfsm
+https://github.com/google/textfsm
+https://github.com/networktocode/ntc-templates/blob/master/templates/cisco_asa_show_version.template
+import textfsm
+
+traceroute 678
+
+-----
+Value id (\d+)
+vlaue ip ([\d.]+)
+
+Start
+  (two spaces)^
+  ^ +${id} +${ip} -> Record
+  ------
+  with open('parse_traceroute.txt') as f:
+	parse = textfsm.TextFSM(f)
+	result = parse.ParseText(output)
+	  
+	  
+	  
+sh cdp nei
+Value interface (\s+)
+Value ip (\s+)
+Value status (up|down|administratively down)
+Value protokol (up|down)
+
+Start
+  ^${interface} +${ip} +\w+ +\w +${status} -> Record
+  
+--------
+sh cdp neig detail
+
+Value Filldown ldev (\s+)    if without Filldown we will lose all except first
+Value Required rdev (\s+)		without 'Required' we will "Record" even without a value (could be blank)
+Value l_if (\s+)
+Value r_if (\s+)
+
+Start
+  ^${ldev}[#>]
+  ^Device ID: ${rdev}
+  ^Interface: ${l_if}, +Port ID \(outgoing port\): ${r_if} -> Record
+  
+  
+  
+  -----
+O 10.1.1.0/24 [110/20] via 10.0.12.2, 1w2d, Ethernet0/1
+O 10.2.2.0/24 [110/20] via 10.0.13.3, 1w2d, Ethernet0/2
+O 10.3.3.3/32 [110/11] via 10.0.12.2, 1w2d, Ethernet0/1
+O 10.4.4.4/32 [110/11] via 10.0.13.3, 1w2d, Ethernet0/2
+			  [110/11] via 10.0.14.4, 1w2d, Ethernet0/3
+O 10.5.5.5/32 [110/21] via 10.0.13.3, 1w2d, Ethernet0/2
+			  [110/21] via 10.0.12.2, 1w2d, Ethernet0/1
+			  [110/21] via 10.0.14.4, 1w2d, Ethernet0/3
+O 10.6.6.0/24 [110/20] via 10.0.13.3, 1w2d, Ethernet0/2
+
+Value network (\S+)
+Value mask (\d+)
+Value distance (\d+)
+Value metric (\d+)
+Value List nexthop (\S+)	List instead of overwriting add a new value to list
+Start
+^O -> Continue.Record				Continue mean use the same line as if we didn't have match (L.R S    - Line action, record action, state transition)
+^O +${network}/${mask}\s\[${distance}/${metric}\]\svia\s${nexthop},
+^\s+\[${distance}/${metric}\]\svia\s${nexthop},
+
+
+network mask distance metric nexthop
+--------- ------ ---------- -------- ---------------------------------------
+10.1.1.0 24 110 20 ['10.0.12.2']
+10.2.2.0 24 110 20 ['10.0.13.3']
+10.3.3.3 32 110 11 ['10.0.12.2']
+10.4.4.4 32 110 11 ['10.0.13.3', '10.0.14.4']
+10.5.5.5 32 110 21 ['10.0.13.3', '10.0.12.2', '10.0.14.4']
+10.6.6.0 24 110 20 ['10.0.13.3']
+
+Line action:
+Next - default
+Continue
+
+record action:
+NoRecord - Default
+Record
+Clear
+ClearAll
+
+
+
