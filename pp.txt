@@ -1041,5 +1041,96 @@ Record
 Clear
 ClearAll
 
+------------jija2------------------
+template = '''
+router bgp {{ bgp.local_as }}
+{% for ibgp in bgp.ibgp_neighbors %}
+neighbor {{ ibgp }} remote-as {{ bgp.local_as }}
+neighbor {{ ibgp }} update-source  {{ bgp.loopback }}
+{% endfor %}
+
+vlan {{ vlans[0] }}
+router ospf 1
+network {{ ospf.network }} area {{ ospf['area'] }}
+'''
+
+variables = 
+id: 3
+name: R3
+vlans:
+	- 10
+	- 20
+	- 30
+ospf:
+	network: 10.0.1.0 0.0.0.255
+	area 0
+---code---
+-----------
+ospf:
+	- network: 10.0.0.0 0.0.0.255
+	  area: 0
+	- network: 10.0.2.0 0.0.0.255
+	  area: 1
+	- network: 10.0.3.0 0.0.0.255
+	  area: 2	
+vlans:
+	10:Marketing
+	11:Business
+
+{% for vlan, name, in vlans.items() %}
+vlan {{ vlan }}
+name {{ name }}
+{% endfor %}
+
+{% for netwoks in ospf %}
+network {{ networks.network }} area {{ networks.area}}
+{% endfor %}
+{% if ospf %}
+router ospf 1
+router-id 10.0.0.{{ id }}
+{% endif %}
+{% for intf,params in trunks.items() %}
+interface {{ intf }}
+{% if params.action == 'add' %}
+switchport trunk allowed vlan add {{ params.vlans }}
+{% elif params.action == 'delete' %}
+switchport trunk allowed vlan remove {{ params.vlans }}
+{% else %}
+switchport trunk allowed vlan  {{ params.vlans }}
+------------
+TEMPLATE_DIR, template_file = os.path.split(sys.argv[1])
+
+env = Environment(
+	loader = FileSystemLoader(TEMPLATE_DIR),
+	trim_blocks = True,			delete all clear lines
+	lstrip_blocks = True)      delete all spaces before(left)
+	
+template = env.get_template(template_file)
+vars_dict = yaml.load(open(VARS_FILE), Loader = yaml.FullLoader)
+
+print(template.render(vars_dict))
+
+
+
+-------vim-------
+:open FILE_PATH
+Now you can move to the right window from the left by pressing <Ctrl>+<w> and then pressing <l>
+You can move to the left window again by pressing <Crtl>+<w> and then pressing <h>.  To open a new VIM window on the bottom of the currently selected window, press <Ctrl>+<w> then press <s>. 
+<Ctrl>+<w> then press <v>. - open new horizontal window
+Now go to “Insert Mode” by pressing ‘i’ and navigate to the place where you want to paste the text. Then go back to “Command Mode” by pressing <ESC> and press <p> to paste the copied text.
+You can go to the window below the selected window by pressing <Ctrl>+<w> and then pressing <j>
+You can go to the window above the selected window by pressing <Ctrl>+<w> and then pressing <k>
+v    new gor window
+s	new vertical window
+	
+j   u
+k	d
+l	>
+h	<
+
+changing width <Ctrl>+<w>  >/< 
+changing height <Ctrl>+<w>  +/- 
+reset to equal width and height <Ctrl>+<w>  ‘=’ 
+
 
 
