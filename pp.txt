@@ -1042,6 +1042,19 @@ Clear
 ClearAll
 
 ------------jija2------------------
+TEMPLATE_DIR, template_file = os.path.split(sys.argv[1])
+
+env = Environment(
+	loader = FileSystemLoader(TEMPLATE_DIR),
+	trim_blocks = True,			delete all clear lines
+	lstrip_blocks = True)      delete all spaces before(left)
+template = env.get_template(template_file)
+env = Environment(loader = FileSystemLoader(TEMPLATE_DIR))
+vars_dict = yaml.load(open(VARS_FILE), Loader = yaml.FullLoader)
+
+print(template.render(vars_dict))
+
+
 template = '''
 router bgp {{ bgp.local_as }}
 {% for ibgp in bgp.ibgp_neighbors %}
@@ -1098,18 +1111,23 @@ switchport trunk allowed vlan remove {{ params.vlans }}
 {% else %}
 switchport trunk allowed vlan  {{ params.vlans }}
 ------------
-TEMPLATE_DIR, template_file = os.path.split(sys.argv[1])
 
-env = Environment(
-	loader = FileSystemLoader(TEMPLATE_DIR),
-	trim_blocks = True,			delete all clear lines
-	lstrip_blocks = True)      delete all spaces before(left)
 	
-template = env.get_template(template_file)
-vars_dict = yaml.load(open(VARS_FILE), Loader = yaml.FullLoader)
 
-print(template.render(vars_dict))
 
+
+{{ ref_bw | default(10000) }} if we don't have ref_bw variable at all we will get def value
+{{ ref_bw | default(10000,boolean = true) }} if we ref_bw  not zero we will get def value
+
+{% for intf, params in trunks | dictsort %}
+{% endfor %}
+{{ params.vlans | join(',') }}
+
+instead of code we can include file with template part:
+
+{% include 'vlans.txt' %}
+
+{% include 'ospf.txt' %}
 
 
 -------vim-------
