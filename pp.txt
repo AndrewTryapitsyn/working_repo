@@ -1151,4 +1151,4 @@ changing height <Ctrl>+<w>  +/-
 reset to equal width and height <Ctrl>+<w>  ‘=’ 
 
 
-
+go in block visual mode ctrl-v, select the lines you want to modify, press I (insert mode with capital i), and apply any changes I want for the first line. Leaving visual mode esc will apply all changes on the first line to all lines.
