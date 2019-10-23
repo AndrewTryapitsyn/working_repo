@@ -1130,6 +1130,46 @@ instead of code we can include file with template part:
 {% include 'ospf.txt' %}
 
 
+------------concurent connectins---------
+threading
+multiprocessing
+concurent.futures
+
+from datetime import datetime
+import timeout
+
+start_time = datetime.now()
+
+time.sleep()
+
+print(datetime.now() - start_time)
+
+
+process - some kind of application. we can arrange memory,cpu
+thread(flow) - единица исполнения в процессе, потоки разделяют ресурсы процессораб к которому они относятся
+SyncIO чтото подобное netmiko но для процессов
+GIL Global Interpretator Log 
+только один процесс может выволнятся - тот у которого есть GIL 
+GIL отпускает при операциях ввода/вывода  - на стандартный поток выводаб чтение из файлаб чтение по сети
+
+
+from concurent.futures import ThreadPoolExecutor
+with ThreadPoolExecutor(max_workers = 3) as executor:
+	result = executor.map(send_show,devices, repeat('show clock'))
+
+from itertools import repeat
+repeat('sh clock')
+
+
+----------logging------
+import logging
+logging.getLogger('paramiko').setLevel(logging.WARNING)  set to display logs from paramiko only WARNING
+
+logging.basicConfig( level = logging.INFO)
+
+logging.info('connectin to')
+
+
 -------vim-------
 :open FILE_PATH
 Now you can move to the right window from the left by pressing <Ctrl>+<w> and then pressing <l>
