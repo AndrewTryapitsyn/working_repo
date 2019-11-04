@@ -178,6 +178,8 @@ list1.sort()!! list1 == 1,2,3,4,5 !!!will sort list1 do not return result so if 
 sorted()      !!!use sorted instead
 ','.join(vlans)
 
+d.setdefault('new',[]).append('5')
+
 ---------------dict--------------
 r1 = {'location':'IT'}
 r1 = dict(location='IT', serial='aaaaa')
