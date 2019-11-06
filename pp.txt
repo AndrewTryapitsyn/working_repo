@@ -1163,6 +1163,17 @@ from itertools import repeat
 repeat('sh clock')
 
 
+
+
+---------class--------
+dir(str)   display all methhods
+class MyClass():
+def __init__(self,num):
+	self.num = num
+def __str__
+
+
+
 ----------logging------
 import logging
 logging.getLogger('paramiko').setLevel(logging.WARNING)  set to display logs from paramiko only WARNING
