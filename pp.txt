@@ -1170,7 +1170,34 @@ dir(str)   display all methhods
 class MyClass():
 def __init__(self,num):
 	self.num = num
-def __str__
+def __str__(self):			how it will be looks in print, in string 
+	return f'Myclass {self.num}'
+	
+def __repr__(self):			how it will be looks like in 
+	return f'Myclass {self.num}'
+def __lt__(self,other):
+	return self.num < other.num
+
+numbers = [MyClass(33),MyClass(10),Myclass(10)]
+sorted(numbers)
+
+class Network:
+	def __inint__(self,network)
+		self.network = network
+	def hosts(self):
+	net = ipaddress.ip_network(self.network)
+	addresses = [str(ip) for ip in net.hosts]
+	return iter(addresses)
+	def __iter__(self)
+	net = ipaddress.ip_network(self.network)
+	addresses = [str(ip) for ip in net.hosts]
+	return iter(addresses)                  --------always should return iter
+net1 = Network('10.0.0.0/24')
+for ip in net1:
+print ip
+==
+for ip in net1.hosts():
+print ip
 
 
 
