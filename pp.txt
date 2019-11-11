@@ -1210,6 +1210,27 @@ logging.basicConfig( level = logging.INFO)
 logging.info('connectin to')
 
 
+
+--------Alg---------
+stack
+Stacks, like the name suggests, follow the Last-in-First-Out (LIFO) principle
+letters = []
+letters.append('q')
+letters.append('a')
+letters.append('w')
+
+letters.pop() - will remove 'w'
+
+Queues, like the name suggests, follow the First-in-First-Out (FIFO) principle
+
+letters.append('q')
+letters.append('a')
+letters.append('w')
+
+letters.pop(0) - will remove 'q'
+
+
+
 -------vim-------
 :open FILE_PATH
 Now you can move to the right window from the left by pressing <Ctrl>+<w> and then pressing <l>
