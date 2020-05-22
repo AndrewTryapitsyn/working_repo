@@ -1209,6 +1209,198 @@ logging.basicConfig( level = logging.INFO)
 
 logging.info('connectin to')
 
+ansible
+
+AD HOC commands
+ansible cisco-routers -i myhosts -m raw -a "sh ip int br" -u cisco --ask-pass
+89636296774
+
+Config fail could be located :
+ANSIBLE_CONFIG
+ansible.cfg (local folder)
+.ansible.cfg(user home directory)
+/etc/ansible/ansible.cfg
+
+---config file---
+[default]
+
+inventory = ./myhosts
+remote_user = cisco
+ask_pass = True         - always ask password
+
+ansible cisco-routers -m raw -a "sh ip int br"
+
+Playbook
+playbook.yml
+
+---
+
+- name: Run show commands on routers
+	hosts: cisco-routers
+	gather_facts: false
+	
+	tasks:
+	
+		- name: rrun sh ip int br
+		raw: sh ip int br | ex unass
+		
+		- name: run sh ip routers
+		raw: sh ip routers
+
+- name: Run show commands on switches
+	hosts: cisco-switches
+	gather_facts: false
+	
+	tasks:
+	
+		- name: run sh int status
+		raw: sh ip int status
+		
+		- name: run sh vlan
+		raw: sh vlan
+
+ansible-playbook playbook1.yml 
+ansible-playbook playbook1.yml --limit 192.168.1.1   - execute only on one device  or @filename
+
+
+OOP
+variables:
+_  private variables
+__ if we have the same variable(it will add classname automatically)
+
+__init__(self,) should not return anything
+__add__(self,val)  + operation (better to return tha same object tyep as val)
+__str__(self) print for human like format 
+__rep__ 'official' view usually same as how to init it
+__lt__(self,other) return self.num < other.num (for sorting)
+__eq__ same for == operation
+
+__iter__(self):  				should return iter()
+	return iter(["q","n","f"])
+__next__:
+ if self._index< len(self(addresses)):
+	current_address = self.addresses[self._index]
+	self.index+=1
+	return current_address
+ else:
+	raise StopIteration
+
+content manager:
+__enter__(self): return  could be ssh for example
+						performing initial actions(open file)
+__exit__(self,exc_type,exc_value,traceback)  performing ssh.close, execeptions 
+
+__getattr__ if we do not have parametr, we can initiate some actions 
+ 
+ 
+Наследование
+
+class CiscoSsh:
+	def __init__(self,**device_info):
+		qwe
+	def send_command(self,cmd)
+
+class CiscoSshNew(CiscoSsh):
+	def __init__(self,**device_info):
+		qwe_new
+		super().__init__(**device_info)  - first __init__ in parent class
+	def new_cmd(self):
+		super().send_command('sh vers')
+		CiscoSsh.send_command(self,'sh vers')
+		
+Exceptions
+
+ValueError('Error')
+
+class MyException(Exception):
+	pass
+
+	
+	
+Logging
+
+Logger
+handler
+filter
+formatter
+
+import logging
+logging.basicConfig(level=logging.DEBUG)
+logging.debug('debug')
+logging.info('info')
+logging.warning('warning')
+
+
+logger =  logging.getLogger('My script')
+logger.debug('qwe')
+logger.setLevel(logging.DEBUG)  for whole logger
+
+console = logging.StreamHandler()
+console.setLevel(logging.DEBUG)  only for stream handler inside logger
+formatter = logging.Formatter('%(ascitime)s',datefmt = '%H:%M:%S')
+
+console.setFormatter(formatter)
+logger.addHandler(console)
+
+logger.debug('qwe')
+
+logger = logging.getLogger("requests.packages.urllib3")
+logger = logging.getLogger("requests")
+logging.getLogger("paramiko")
+logging.getLogger("netmiko").setLevel(logging.DEBUG)
+
+__init__
+
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+console = logging.StreamHandler()
+console.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(ascitime)s - %(name)s - %(levelname)s - %(message)s',datefmt = '%H:%M:%S')
+
+console.setFormatter(formatter)
+logger.addHandler(console)
+
+
+--------Packages----------
+file __init__ is using for importing mostly
+it could be black or could have import for all piles from the package 
+from cisco_ssh.ssh import CisocSSH      # absolute import
+from cisco_ssh.telnet import CiscoTelnet
+
+better to not specify package name, but rather use:
+from .ssh import CisocSSH				#relative import
+from .telnet import CiscoTelnet
+
+basically mean from the same catalog level use . one level upper ..
+ 
+for __init__ it is also fine :
+from .ssh import *
+
+in the file ssh we can also specify only requered punctiobs
+__all__ = ['CiscoSsh','another_function']
+
+and now in __init__ we can use:
+from .ssh import *
+and it will import only CiscoSsh','another_function
+and we still can import other functions with:
+import cisco_connect.ssh
+cisco_connect.ssh.enother_other_function
+
+for __init__ we can use:
+__all__ = [ssh.__all__+telnet.__all__]
+
+
+setuptool good to check
+
+
+
+__future__ 
+Basically provide some functionality for p2 from p3  
+from __future__ import unicode_literals
+from __future__ import print_functions
 
 
 --------Alg---------
@@ -1228,6 +1420,8 @@ letters.append('a')
 letters.append('w')
 
 letters.pop(0) - will remove 'q'
+
+
 
 
 
